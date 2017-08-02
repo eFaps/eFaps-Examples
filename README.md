@@ -12,4 +12,5 @@ Example Repository
 
 ## Start webapp
 
-mvn efaps-jetty:run
+1.  mvn efaps-jetty:run
+2.  http://localhost:8888/eFaps/
