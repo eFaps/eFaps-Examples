@@ -43,6 +43,7 @@
                     <ciName>Ele</ciName>
                     <eFapsDir>${basedir}/src/main/elemental</eFapsDir>
                     <versionFile>${basedir}/src/main/elemental/versions.xml</versionFile>
+                    <type>org.efaps.db.databases.PostgreSQLDatabase</type>
                     <factory>com.zaxxer.hikari.HikariJNDIFactory</factory>
                     <userName>Administrator</userName>
                     <passWord>Administrator</passWord>
@@ -79,6 +80,46 @@
                     </dependency>
                 </dependencies>
             </plugin>
+             <plugin>
+                <groupId>org.efaps</groupId>
+                <artifactId>efaps-jetty-maven-plugin</artifactId>
+                <version>8.0.0-9.3-SNAPSHOT</version>
+                <configuration>
+                    <jaasConfigFile>${basedir}/src/main/jetty/jaas.config</jaasConfigFile>
+                    <configFile>file:${basedir}/src/main/jetty/eFaps-jetty.xml</configFile>
+                    <type>org.efaps.db.databases.PostgreSQLDatabase</type>
+                    <factory>com.zaxxer.hikari.HikariJNDIFactory</factory>
+                    <userName>Administrator</userName>
+                    <passWord>Administrator</passWord>
+                    <connection>username = efaps,
+                        password = efaps,
+                        dataSourceClassName = org.postgresql.ds.PGSimpleDataSource,
+                        dataSource.databaseName = elemental,
+                        dataSource.portNumber = 5432,
+                        dataSource.serverName = localhost,
+                        maximumPoolSize = 20,
+                        maxTotal = -1,
+                        maxActive = 100,
+                        maxIdle = 10,
+                        maxWait = -1,
+                        removeAbandoned = true,
+                        logAbandoned = true</connection>
+                </configuration>
+                <dependencies>
+                    <!-- as dependency, the modul itself is used -->
+                    <dependency>
+                        <groupId>org.efaps.example</groupId>
+                        <artifactId>elemental</artifactId>
+                        <version>${project.version}</version>
+                        <exclusions>
+                            <exclusion>
+                                <groupId>org.efaps</groupId>
+                                <artifactId>efaps-kernel</artifactId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -92,6 +133,11 @@
                     <groupId>mysql</groupId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>2.6.3</version>
         </dependency>
     </dependencies>
 </project>
