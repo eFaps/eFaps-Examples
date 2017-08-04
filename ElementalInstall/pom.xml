@@ -26,6 +26,8 @@
     <groupId>org.efaps.example</groupId>
     <artifactId>elemental</artifactId>
     <name>Installation example for a basic ERP</name>
+
+
     <build>
         <plugins>
             <plugin>
@@ -59,7 +61,11 @@
                         maxIdle = 10,
                         maxWait = -1,
                         removeAbandoned = true,
-                        logAbandoned = true</connection>
+                        logAbandoned = true
+                    </connection>
+                    <configProps>
+                         org.efaps.transaction.timeout = 9000
+                    </configProps>
                 </configuration>
                 <dependencies>
                     <dependency>
