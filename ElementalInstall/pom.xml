@@ -26,8 +26,6 @@
     <groupId>org.efaps.example</groupId>
     <artifactId>elemental</artifactId>
     <name>Installation example for a basic ERP</name>
-
-
     <build>
         <plugins>
             <plugin>
@@ -55,7 +53,8 @@
                         dataSource.databaseName = elemental,
                         dataSource.portNumber = 5432,
                         dataSource.serverName = localhost,
-                        maximumPoolSize = 30,
+                        connectionTimeout = 12000000,
+                        maximumPoolSize = 100,
                         maxTotal = -1,
                         maxActive = 100,
                         maxIdle = 10,
@@ -64,18 +63,18 @@
                         logAbandoned = true
                     </connection>
                     <configProps>
-                         org.efaps.transaction.timeout = 9000
+                         org.efaps.transaction.timeout = 90000
                     </configProps>
                 </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>com.zaxxer</groupId>
                         <artifactId>HikariCP</artifactId>
-                        <version>2.6.3</version>
+                        <version>${hikaricp.version}</version>
                     </dependency>
                     <dependency>
-                        <groupId>org.efaps</groupId>
-                        <artifactId>efaps-webapp-install</artifactId>
+                        <groupId>org.efaps.apps</groupId>
+                        <artifactId>sales</artifactId>
                         <version>${efaps.app.dependencies}</version>
                         <exclusions>
                             <exclusion>
@@ -140,10 +139,41 @@
                 </exclusion>
             </exclusions>
         </dependency>
+     <dependency>
+            <groupId>org.efaps.apps</groupId>
+            <artifactId>accounting</artifactId>
+            <version>${efaps.app.dependencies}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.efaps.apps</groupId>
+            <artifactId>sales</artifactId>
+            <version>${efaps.app.dependencies}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.efaps.localizations</groupId>
+            <artifactId>ubicaciones</artifactId>
+            <version>${efaps.app.dependencies}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.efaps.apps</groupId>
+            <artifactId>console</artifactId>
+            <version>${efaps.app.dependencies}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.efaps.apps</groupId>
+            <artifactId>logback</artifactId>
+            <version>${efaps.app.dependencies}</version>
+        </dependency>
+         <dependency>
+            <groupId>org.efaps.apps</groupId>
+            <artifactId>humanresource</artifactId>
+            <version>${efaps.app.dependencies}</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
-            <version>2.6.3</version>
+            <version>${hikaricp.version}</version>
         </dependency>
     </dependencies>
 </project>

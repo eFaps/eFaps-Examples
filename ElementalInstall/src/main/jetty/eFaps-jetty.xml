@@ -1,6 +1,6 @@
 <!--
 
- Copyright 2003 - 2016 The eFaps Team
+ Copyright 2003 - 2019 The eFaps Team
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -18,24 +18,19 @@
 <server>
     <filter path="/*" name="eFaps"
         classname="org.apache.wicket.protocol.http.WicketFilter">
-        <parameter key="applicationClassName">org.efaps.ui.wicket.EFapsApplication
-        </parameter>
+        <parameter key="applicationClassName">org.efaps.ui.wicket.EFapsApplication</parameter>
         <parameter key="filterMappingUrlPattern">/*</parameter>
         <parameter key="ignorePaths">servlet/</parameter>
-        <!-- <parameter key="org.efaps.login.roles">Sales_Admin</parameter>
-            <parameter key="org.efaps.application.key">applicationkey</parameter> -->
     </filter>
 
     <filter path="/*" name="BasicAuthenticationFilter"
         classname="org.efaps.ui.filter.BasicAuthenticationFilter">
-        <parameter key="login.name">wicket:eFaps:org.efaps.ui.wicket.LoginAttributeName
-        </parameter>
+        <parameter key="login.name">wicket:eFaps:org.efaps.ui.wicket.LoginAttributeName</parameter>
     </filter>
 
     <filter path="/*" name="eFapsTransactionFilter"
         classname="org.efaps.ui.filter.TransactionFilter">
-        <parameter key="login.name">wicket:eFaps:org.efaps.ui.wicket.LoginAttributeName
-        </parameter>
+        <parameter key="login.name">wicket:eFaps:org.efaps.ui.wicket.LoginAttributeName</parameter>
     </filter>
 
     <servlet path="/*" name="eFapsInitServlet" displayname="eFapsInitServlet"
@@ -59,5 +54,3 @@
         <parameter key="javax.ws.rs.Application">org.efaps.rest.EFapsResourceConfig</parameter>
     </servlet>
 </server>
-
-
